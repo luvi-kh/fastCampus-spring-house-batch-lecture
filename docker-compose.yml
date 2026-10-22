@@ -3,10 +3,11 @@ version: '3'
 services:
   mysql:
     container_name: mysql_house_batch
-    image: mysql/mysql-server:5.7
+    image: mysql:latest
     environment:
       MYSQL_ROOT_HOST: '%'
       MYSQL_USER: "house"
+      MYSQL_ROOT_PASSWORD: "house"
       MYSQL_PASSWORD: "house"
       MYSQL_DATABASE: "house_batch"
     ports:
