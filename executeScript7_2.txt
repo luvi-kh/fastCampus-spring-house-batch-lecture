@@ -1,0 +1,6 @@
+
+java -jar build/libs/house-batch-0.0.1-SNAPSHOT.jar --spring.batch.job.names=lawdInsertJob --spring.profiles.active=init filePath=LAWD_CODE_SAMPLE.txt
+java -jar build/libs/house-batch-0.0.1-SNAPSHOT.jar --spring.batch.job.name=AptDealInsertJob filePath=apartment-api-response.xml
+java -jar build/libs/house-batch-0.0.1-SNAPSHOT.jar --spring.batch.job.name=AptDealInsertJob yearMonth=2021-07
+java -jar build/libs/house-batch-0.0.1-SNAPSHOT.jar --spring.batch.job.name=aptNotificationJob dealDate=2021-07-29
+
