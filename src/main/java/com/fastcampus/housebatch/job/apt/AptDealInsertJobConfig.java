@@ -83,12 +83,16 @@ public class AptDealInsertJobConfig {
 		  @Value("#{jobExecutionContext['guLawdCd']}") String guLawdCd,
 		  Jaxb2Marshaller aptDealDtoMarshaller
 	) {
-		return new StaxEventItemReaderBuilder<AptDealDto>()
-		  .name("aptDealResourceReader")
-		  .resource(apartmentApiResource.getResource(guLawdCd, YearMonth.parse(yearMonth)))
-		  .addFragmentRootElements("item")
-		  .unmarshaller(aptDealDtoMarshaller)
-		  .build();
+		// 💡 네임스페이스 필터링 및 중첩 구조 우회를 위해 빌더를 쓰지 않고 리더 인스턴스를 직접 제어합니다.
+		StaxEventItemReader<AptDealDto> reader = new StaxEventItemReader<>();
+		reader.setName("aptDealResourceReader");
+		reader.setResource(apartmentApiResource.getResource(guLawdCd, YearMonth.parse(yearMonth)));
+		reader.setUnmarshaller(aptDealDtoMarshaller);
+
+		// 💡 복잡한 상위 depth 구조와 상관없이 XML 안의 모든 단일 <item> 태그를 정밀 추적하도록 강제 지정합니다.
+		reader.setFragmentRootElementName("item");
+
+		return reader;
 	}
 	
 	@Bean
