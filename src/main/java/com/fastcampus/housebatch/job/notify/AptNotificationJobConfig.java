@@ -106,7 +106,7 @@ public class AptNotificationJobConfig {
 	
 	@StepScope
 	@Bean
-	public ItemWriter<NotificationDto> aptNotificationWriter(EmailService emailService) {
+	public ItemWriter<NotificationDto> aptNotificationWriter(FakeSendService emailService) {
 		return items -> items.forEach(item -> emailService.send(item.getEmail(), item.toMessage()));
 	}
 }

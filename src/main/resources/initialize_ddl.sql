@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 DROP TABLE IF EXISTS lawd;
 DROP TABLE IF EXISTS apt;
 DROP TABLE IF EXISTS apt_deal;
@@ -55,3 +57,5 @@ create table apt_notification
 	updated_at datetime not null,
 	constraint uk_email_gulawdcd unique (email, gu_lawd_cd)
 );
+
+SET FOREIGN_KEY_CHECKS = 1;

@@ -15,13 +15,53 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: house
     password: house
-    initialization-mode: always
+    initialization-mode: never
     schema: classpath:initialize_ddl.sql
   jpa:
     show-sql: true
     generate-ddl: false
     hibernates:
       ddl-auto: none
+  batch:
+    jdbc:
+      initialize-schema: never
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          socketFactory.class: javax.net.ssl.SSLSocketFactory
+          auth: true
+          starttls:
+            enable: true
+external :
+  apartment-api:
+    path:
+    service-key:
+
+---
+spring:
+  config:
+    activate:
+      on-profile: init
+  datasource:
+    url : jdbc:mysql://127.0.0.1:3306/house_batch
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: house
+    password: house
+    initialization-mode: always
+    schema: classpath:initialize_ddl.sql
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
   batch:
     jdbc:
       initialize-schema: always
@@ -39,8 +79,8 @@ spring:
             enable: true
 external :
   apartment-api:
-    path: http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev
-    service-key: EdMKj6557yVIaHWPV1kkI6fxXtXSC8tUcX0QO%2FPxAT6tsSnPUg92SDyD4spHDeVf1yAiC2cmlYMQx5Mw%2FllUHg%3D%3D
+    path:
+    service-key:
 
 
 
