@@ -58,4 +58,7 @@ create table apt_notification
 	constraint uk_email_gulawdcd unique (email, gu_lawd_cd)
 );
 
+INSERT INTO apt_notification (email, gu_lawd_cd, enabled, created_at, updated_at)
+VALUES ('test_user@gmail.com', '11110', 1, NOW(), NOW());
+
 SET FOREIGN_KEY_CHECKS = 1;
